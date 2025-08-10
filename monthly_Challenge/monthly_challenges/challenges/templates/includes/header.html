@@ -1,0 +1,8 @@
+<nav>
+    <a href="{% url 'index' %}">Home</a>
+</nav>
+{% if active_page == "index" %}
+    <strong>Index Page</strong>
+{% else %}
+    <span>Other Page</span>
+{% endif %}
