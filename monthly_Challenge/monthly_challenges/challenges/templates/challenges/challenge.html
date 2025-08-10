@@ -1,16 +1,29 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
+{% load static %}
 
-{%block page-title%} {{month_name|title}} {% endblock %}
-{%block css_file%}  {%endblock%}
+{% block page-title %} {{month_name|title}} Challenge {% endblock %}
+
+{% block css_file %}
+<link rel="stylesheet" href="{% static 'challenges/each_challenge.css' %}" />
+{% endblock %}
 
 {% block content %}
-
 {% include "includes/header.html" with active_page="month_name" %}
 
-<h1>{{month_name|title}} Challenge</h1>
-{%if text is not None %}
-<h2>{{text}}</h2>
-{%else%}
-<p>No challenge text available for this month.</p>
-{%endif%}
-{%endblock%}
+<div class="challenge-container">
+  <div class="challenge-header">
+    <h1 class="challenge-month">{{month_name|title}} Challenge</h1>
+    <div class="challenge-divider"></div>
+  </div>
+  
+  <div class="challenge-content">
+    {% if text is not None %}
+    <h2 class="challenge-text">{{text}}</h2>
+    {% else %}
+    <p class="no-challenge">No challenge text available for this month.</p>
+    {% endif %}
+  </div>
+  
+  <a href="{% url 'index' %}" class="back-button">← Back to All Challenges</a>
+</div>
+{% endblock %}
